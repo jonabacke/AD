@@ -1,0 +1,41 @@
+package ab_01;
+
+public class Container<ELEM> {
+	
+	private Container<?> next;
+	private Container<?> prev;
+	private ELEM element;
+	private KEY key;
+	
+	public Container(Container<?> next, Container<?> prev, ELEM element, KEY key) {
+		// TODO Auto-generated constructor stub
+		this.next = next;
+		this.prev = prev;
+		this.element = element;
+		this.key = key;
+	}
+	
+	public Container<?> getPrev() {
+		return this.prev;
+	}
+	
+	public Container<?> getNext() {
+		return this.next;
+	}
+	
+	public void setPrev(Container<?> prev) {
+		this.prev = prev;
+	}
+	
+	public void setNext(Container<?> next) {
+		this.next = next;
+	}
+	
+	public ELEM getElem() {
+		return element;
+	}
+	
+	public KEY getKey() {
+		return this.key;
+
+}

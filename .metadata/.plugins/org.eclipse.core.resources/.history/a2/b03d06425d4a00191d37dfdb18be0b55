@@ -1,0 +1,64 @@
+package ab_01;
+
+public class ContainerSet<ELEM> implements SET<ELEM> {
+	
+	public Container<ELEM> firstContainer;
+	public Container<ELEM> lastContainer;
+	public int size;
+	
+	public ContainerSet() {
+		// TODO Auto-generated constructor stub
+		this.firstContainer =  new Container<ELEM>(lastContainer, null, null, new KEY());
+		this.lastContainer = new Container<ELEM>(null, firstContainer, null, new KEY());
+		this.size = 0;
+	}
+
+	@Override
+	public POS add(ELEM elem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(POS pos) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(KEY key) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public POS find(KEY key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ELEM retrieve(POS pos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void showAll() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public SET<ELEM> unify(SET<ELEM> s, SET<ELEM> t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

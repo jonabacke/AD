@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="ab_01.POS"/>
+    <fullyQualifiedTypeName name="sun.jvm.hotspot.runtime.ConstructionException"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+    <fullyQualifiedTypeName name="ab_01.arrayListElement"/>
+    <fullyQualifiedTypeName name="ab_01.arrayListSet"/>
+</qualifiedTypeNameHistroy>

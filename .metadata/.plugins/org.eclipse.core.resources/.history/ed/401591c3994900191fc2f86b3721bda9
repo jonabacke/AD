@@ -1,0 +1,11 @@
+package ab_01;
+
+public class KEY {
+	
+	int keyInteger;
+	
+	public void set(int key) {
+		this.keyInteger = key;
+	}
+
+}

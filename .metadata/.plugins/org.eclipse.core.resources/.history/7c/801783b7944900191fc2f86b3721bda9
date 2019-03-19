@@ -1,0 +1,7 @@
+package ab_01;
+
+public interface SET<ELEM> {
+	public POS add(ELEM elem);
+	public void delete(POS pos);
+	public void delete()
+}

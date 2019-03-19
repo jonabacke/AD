@@ -1,0 +1,111 @@
+package ab_01;
+
+import java.lang.reflect.Array;
+
+public class arrayListSet<ELEM> implements SET<ELEM> {
+	
+	private int size;
+	private arrayListElement<ELEM> [] arrList;
+	
+	@SuppressWarnings("unchecked")
+	public arrayListSet() {
+		// TODO Auto-generated constructor stub
+		this.arrList = (arrayListElement<ELEM>[]) Array.newInstance(null, 15);	
+		this.size = 15;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public arrayListSet(int size) {
+		// TODO Auto-generated constructor stub
+		this.arrList = (arrayListElement<ELEM>[]) Array.newInstance(null, size);
+		this.size = size;
+	}
+
+	@Override
+	public POS add(ELEM elem) {
+		// TODO Auto-generated method stub
+		POS pos = new POS();
+		for (int i = 0; i < this.arrList.length; i++) {
+			if (this.arrList[i] == null) {
+				arrayListElement<ELEM> element = new arrayListElement<ELEM>(null, arrList[i - 1], elem);
+				this.arrList[i] = element;
+				pos.setInteger(i);
+			} else {
+				continue;
+			}
+		}
+		if (pos.getInteger() == -1) {
+			@SuppressWarnings("unchecked")
+			arrayListElement<ELEM>[] arrList2 = (arrayListElement<ELEM>[]) Array.newInstance(null, this.size * 2); 
+			for (int i = 0; i < arrList.length; i++) {
+				arrList2[i] = this.arrList[i];
+			}
+			this.arrList = arrList2;
+			this.size *= 2;
+			for (int i = 0; i < this.arrList.length; i++) {
+				if (this.arrList[i] == null) {
+					arrayListElement<ELEM> element = new arrayListElement<ELEM>(null, arrList[i - 1], elem);
+					this.arrList[i] = element;
+					pos.setInteger(i);
+				} else {
+					continue;
+				}
+			}
+		}
+		return pos;
+	}
+
+	@Override
+	public void delete(POS pos) {
+		// TODO Auto-generated method stub
+		if (pos.getInteger() == 0) {
+			this.arrList[pos.getInteger()] = this.arrList[pos.getInteger() + 1];
+			pos.setInteger(pos.getInteger() + 1);
+			this.arrList[pos.getInteger()].setPrev(null);
+		} else {
+			this.arrList[pos.getInteger() - 1].setNext(this.arrList[pos.getInteger() + 1]);
+			this.arrList[pos.getInteger() + 1].setPrev(this.arrList[pos.getInteger() - 1]);
+		}
+		while (this.arrList[pos.getInteger()].getNext() != null) {
+			this.arrList[pos.getInteger()] = this.arrList[pos.getInteger() + 1];
+			pos.setInteger(pos.getInteger() + 1);
+		}
+	}
+
+	@Override
+	public void delete(KEY key) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public POS find(KEY key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ELEM retrieve(POS pos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void showAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public SET<ELEM> unify(SET<ELEM> s, SET<ELEM> t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
