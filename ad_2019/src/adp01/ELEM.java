@@ -4,12 +4,14 @@
 package adp01;
 
 /**
- * PM 2 Praktikumsaufgaben
- *
- * @author Fabian Erdmann
- * @version 19.03.2019
+ * @author thund
  *
  */
-public class ELEM {
-
+class ELEM<T> {
+	protected int key;
+	private T data;
+	
+	public ELEM() {
+		key = KEY.getKey();
+	}
 }

@@ -1,12 +1,12 @@
 package adp01;
 
-public interface SET<p> {
+public interface SET<T> {	
 	public POS add(ELEM elem);
 	public void delete(POS pos);
-	public void delete(int key);
-	public POS find(int key);
+	public void delete(KEY key);
+	public POS find(KEY key);
 	public ELEM retrieve(POS pos);
 	public void showall();
 	public int size();
-	public SET<p> unify(SET<p> s, SET<p> t);
+	public SET<T> unify(SET<T> s, SET<T> t);
 }
