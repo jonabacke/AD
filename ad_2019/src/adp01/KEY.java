@@ -4,14 +4,24 @@
 package adp01;
 
 /**
- * @author thund
+ * Liefert einen einzigartigen Key
+ * @author Fabian Erdmann
  *
  */
 public class KEY {
+	public int key;
 	private static int keysatz;
 	
-	public static int getKey() {
+	/**
+	 * Erstellt einen neuen KEY mit einem einzigartigen
+	 * Schlüssel
+	 */
+	public KEY() {
+		key = keysatz;
 		keysatz++;
-		return keysatz;
+	}
+	
+	public KEY(int key) {
+		this.key = key;
 	}
 }
