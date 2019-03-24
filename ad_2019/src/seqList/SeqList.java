@@ -47,6 +47,7 @@ public class SeqList implements SET {
 		 Knoten<ELEM> prevKnoten = ((ListPos)pos).getZeiger();
 		 Knoten<ELEM> nextKnoten = ((ListPos)pos).getZeiger().getNext().getNext();
 		 
+		 prevKnoten.setNext(nextKnoten);
 	}
 
 	@Override
