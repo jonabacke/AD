@@ -1,5 +1,6 @@
 package adp01;
 
+import arrayContainer.SeqSetContainer;
 import seqList.SeqList;
 import seqSet.SeqPos;
 import seqSet.SeqSet;
@@ -7,20 +8,26 @@ import seqSet.SeqSet;
 public class Test {
 
 	public static void main(String[] args) {
-		SeqList testList = new SeqList();
-		testList.add(new ELEM("Test"));
-		testList.add(new ELEM("Test1"));
-		System.out.println(testList);
+		SeqSetContainer testList = new SeqSetContainer();
+
 		
-		/*
+		
 		for (int i = 0; i < 20; i++) {
 			testList.add(new ELEM("Test" + i));
 		}
 		
 		testList.delete(new SeqPos(1));
 		testList.delete(new KEY(18));
+		testList.delete(new KEY(15));
+		testList.delete(new KEY(13));
+		testList.delete(new KEY(10));
+		
+		for (int i = 0; i < 5; i++) {
+			testList.add(new ELEM("Test" + i));
+		}
+		
 		testList.showall();
-		*/
+		
 	}
 
 }
