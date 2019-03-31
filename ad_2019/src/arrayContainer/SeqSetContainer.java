@@ -1,6 +1,3 @@
-/**
- * 
- */
 package arrayContainer;
 
 import java.util.Arrays;
@@ -9,8 +6,6 @@ import adp01.ELEM;
 import adp01.KEY;
 import adp01.POS;
 import adp01.SET;
-import seqSet.SeqPos;
-import seqSet.SeqSet;
 
 /**
  * Aufgabenblatt 1 Aufgabe 2a
@@ -31,19 +26,20 @@ public class SeqSetContainer implements SET{
 	public SeqSetContainer() {
 		maxsize = 10 + 1; //1 Stopperelement auf 0
 		listSize = 0;
-		elemContainer = new SetContainer[maxsize];
+		elemContainer = new SetContainer[maxsize+1]; //Dummy Element auf MaxSize
 		elemContainer[0] = new SetContainer(1, 0, null);
-		freiListe = new int[maxsize];
+		elemContainer[11] = new SetContainer(0, 0, null);
+		freiListe = new int[maxsize+1];
 		posFreiListe = 0;
 	}
 
 	@Override
-	public SeqPos add(ELEM newElem) {
-		SeqPos newPos = find(newElem.key);
+	public SetPosContainer add(ELEM newElem) {
+		SetPosContainer newPos = find(newElem.key);
 		if (newPos.getValid()) {
 			return newPos;
 		}
-		SeqPos neuePos = new SeqPos(0);
+		SetPosContainer neuePos = new SetPosContainer(0);
 		
 		listSize++;
 		//Wenn Platz in der Liste speichere dort
@@ -72,24 +68,27 @@ public class SeqSetContainer implements SET{
 
 	@Override
 	public void delete(POS pos) {
-		if (!(pos instanceof SeqPos) && !((SeqPos)pos).getValid()) {
+		if ((pos instanceof SetPosContainer) && !((SetPosContainer)pos).getValid()) {
 			return;
 		}
 		
-		if (listSize > 0) {
+		if (listSize > 0 && ((SetPosContainer)pos).getZeiger() < maxsize) {
 			//Das zu loeschende Element
-			int aktuell = ((SeqPos)pos).getZeiger();
+			int aktuell = ((SetPosContainer)pos).getZeiger();
 			//Das naechste ELement
 			int next = elemContainer[aktuell].getNext();
 			//Das vorherige ELement
 			int prev = elemContainer[aktuell].getPrev();
 			//Setzen der neuen Positionen
-			elemContainer[next].setPrev(prev);
+			if (elemContainer[next] != null) {
+				elemContainer[next].setPrev(prev);
+			}
 			elemContainer[prev].setNext(next);
 			elemContainer[aktuell] = null;
 			//Hinzufuegen der neuen freien Position auf die Freiliste
 			posFreiListe++;
 			freiListe[posFreiListe] = aktuell;
+			listSize--;
 		}
 	}
 
@@ -99,30 +98,42 @@ public class SeqSetContainer implements SET{
 	}
 
 	@Override
-	public SeqPos find(KEY key) {
+	public SetPosContainer find(KEY key) {
 		elemContainer[0] = new SetContainer(1, 0, new ELEM(key, null));
 		
-		int index = listSize;
-		while (!(elemContainer[index].getElem().equals(elemContainer[0].getElem()))) {
-			index = elemContainer[index].getPrev();
+		int index = maxsize-1;
+		boolean found = false;		
+		while (!found) {
+			if (elemContainer[index] != null) {
+				found = elemContainer[index].getElem().equals(elemContainer[0].getElem());
+				if (!found) {
+					index = elemContainer[index].getPrev();
+				}
+			}
+			else {
+				index--;
+			}
 		}
 		
-		return new SeqPos(index);
+		return new SetPosContainer(index);
 	}
 
 	@Override
 	public ELEM retrieve(POS pos) {
-		if (pos instanceof SeqPos) {
-			return elemContainer[((SeqPos)pos).getZeiger()].getElem();
+		if ((pos instanceof SetPosContainer) && ((SetPosContainer)pos).getValid()) {
+			SetContainer ergebnis = elemContainer[((SetPosContainer)pos).getZeiger()];
+			if (ergebnis != null) {
+				return ergebnis.getElem();
+			}
 		}
 		return null;
 	}
 
 	@Override
 	public void showall() {
-		for(SetContainer single: elemContainer) {
-			if (single != null) {
-				System.out.println(single.getElem());
+		for (int i = 1; i < maxsize; i++) {
+			if (elemContainer[i] != null) {
+				System.out.println(elemContainer[i].getElem());
 			}
 		}
 	}
@@ -137,7 +148,7 @@ public class SeqSetContainer implements SET{
 		SeqSetContainer newList = new SeqSetContainer();
 		
 		for (int i = 0; i < s.size(); i++) {
-			s.add(t.retrieve(new SeqPos(i)));
+			s.add(t.retrieve(new SetPosContainer(i)));
 		}
 		
 		return newList;

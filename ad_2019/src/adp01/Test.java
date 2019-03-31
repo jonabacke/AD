@@ -1,6 +1,10 @@
 package adp01;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import arrayContainer.SeqSetContainer;
+import arrayContainer.SetPosContainer;
 import seqList.SeqList;
 import seqSet.SeqPos;
 import seqSet.SeqSet;
@@ -8,26 +12,21 @@ import seqSet.SeqSet;
 public class Test {
 
 	public static void main(String[] args) {
-		SeqSetContainer testList = new SeqSetContainer();
-
+		SeqSetContainer testListe = new SeqSetContainer();
+		ELEM[] testElems = new ELEM[11];
 		
+		for(int i = 1; i < 11; i++) {
+			testElems[i] = new ELEM("Test: " + i);
+			testListe.add(testElems[i]);
+		}
+		assertEquals(10, testListe.size());
 		
-		for (int i = 0; i < 20; i++) {
-			testList.add(new ELEM("Test" + i));
+		for(int i = 1; i < 11; i++) {
+			testListe.delete(new SetPosContainer(i));
+			assertFalse(testListe.find(testElems[i].key).getValid());
 		}
 		
-		testList.delete(new SeqPos(1));
-		testList.delete(new KEY(18));
-		testList.delete(new KEY(15));
-		testList.delete(new KEY(13));
-		testList.delete(new KEY(10));
-		
-		for (int i = 0; i < 5; i++) {
-			testList.add(new ELEM("Test" + i));
-		}
-		
-		testList.showall();
-		
+		testListe.showall();
 	}
 
 }
