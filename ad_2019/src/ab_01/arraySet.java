@@ -6,71 +6,77 @@ public class arraySet<ELEM> implements SET<ELEM> {
 	
 	private ELEM [] arr;
 	private int size;
+	Class<ELEM> klasse;
 	
 	@SuppressWarnings("unchecked")
-	public arraySet() {
+	public arraySet(Class<ELEM> klasse) {
 		// TODO Auto-generated constructor stub
-		this.arr = (ELEM[]) Array.newInstance(null, 15);
-		this.size = 15;
+		this.arr = (ELEM[]) Array.newInstance(klasse, 15);
+		this.size = 0;
+		this.klasse = klasse;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public arraySet(int size) {
+	public arraySet(int size, Class<ELEM> klasse) {
 		// TODO Auto-generated constructor stub
 		this.arr = (ELEM[]) Array.newInstance(null, size);
-		this.size = size;
+		this.size = 0;
+		this.klasse = klasse;
 	}
 
 	@Override
 	public POS add(ELEM elem) {
 		// TODO Auto-generated method stub
+		for (int i = 0; i < this.size; i++) {
+			if (this.arr[i] == elem) {
+				System.out.println("Element bereits in dem Set vorhanden");
+				return null;
+			}
+		}
 		POS pos = new POS();
 		for (int i = 0; i < this.arr.length; i++) {
 			if (this.arr[i] == null) {
 				this.arr[i] = elem;
+				this.size ++;
 				pos.setInteger(i);
-			} else {
-				continue;
+				return pos;
 			}
 		}
 		if (pos.getInteger() == -1) {
 			@SuppressWarnings("unchecked")
-			ELEM[] arr2 = (ELEM[]) Array.newInstance(null, this.size * 2); 
+			ELEM[] arr2 = (ELEM[]) Array.newInstance(this.klasse, this.size * 2); 
 			for (int i = 0; i < arr.length; i++) {
 				arr2[i] = this.arr[i];
 			}
 			this.arr = arr2;
-			this.size *= 2;
 			for (int i = 0; i < this.arr.length; i++) {
 				if (this.arr[i] == null) {
 					this.arr[i] = elem;
 					pos.setInteger(i);
-				} else {
-					continue;
+					this.size ++;
+					return pos;
 				}
 			}
 		}
-		return pos;
+		return null;
 	}
 
 	@Override
 	public void delete(POS pos) {
 		// TODO Auto-generated method stub
 		this.arr[pos.getInteger()] = null;
-		while (this.arr[pos.getInteger() + 1] != null) {
-			this.arr[pos.getInteger()] = this.arr[pos.getInteger() + 1];
-			pos.setInteger(pos.getInteger() + 1);
+		for (int i = pos.getInteger(); i < this.size; i++) {
+			this.arr[i] = this.arr[i+1];
 		}
+		this.size --;
 	}
 
 	@Override
 	public void delete(KEY key) {
 		// TODO Auto-generated method stub
-		this.arr[key.getInteger()] = null;
-		while (this.arr[key.getInteger() + 1] != null) {
-			this.arr[key.getInteger()] = this.arr[key.getInteger() + 1];
-			key.setInteger(key.getInteger() + 1);
-		}
+		POS pos = new POS();
+		pos.setInteger(key.getInteger());
+		delete(pos);
 	}
 
 	@Override
@@ -90,10 +96,8 @@ public class arraySet<ELEM> implements SET<ELEM> {
 	@Override
 	public void showAll() {
 		// TODO Auto-generated method stub
-		POS pos = new POS();
-		pos.setInteger(0);
-		while (this.arr[pos.getInteger()] != null) {
-			System.out.println(this.arr[pos.getInteger()].toString());
+		for (int i = 0; i < this.size; i++) {
+			System.out.println(this.arr[i].toString());	
 		}
 		
 	}
@@ -107,7 +111,7 @@ public class arraySet<ELEM> implements SET<ELEM> {
 	@Override
 	public SET<ELEM> unify(SET<ELEM> s, SET<ELEM> t) {
 		// TODO Auto-generated method stub
-		SET<ELEM> set = new arraySet<ELEM>(s.size() + t.size());
+		SET<ELEM> set = new arraySet<ELEM>(s.size() + t.size(), this.klasse);
 		POS pos = new POS();
 		pos.setInteger(0);
 		while (s.retrieve(pos) != null) {

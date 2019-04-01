@@ -8,21 +8,32 @@ public class ContainerSet<ELEM> implements SET<ELEM> {
 	
 	public ContainerSet() {
 		// TODO Auto-generated constructor stub
-		this.firstContainer =  new Container<ELEM>(this.lastContainer, null, null, new KEY());
-		this.lastContainer = new Container<ELEM>(null, this.firstContainer, null, new KEY());
+		this.firstContainer =  new Container<ELEM>(null, null, null, new KEY());
+		this.lastContainer = new Container<ELEM>(null, null, null, new KEY());
+		this.firstContainer.setNext(lastContainer);
+		this.lastContainer.setPrev(firstContainer);
 		this.size = 0;
 	}
 
 	@Override
 	public POS add(ELEM elem) {
-		// TODO Auto-generated method stub
+		Container<ELEM> iteratorContainerSet = this.firstContainer;
+		while (iteratorContainerSet.getNext() != null) {
+			if (iteratorContainerSet.getElem() == elem) {
+				System.out.println("Element bereits in dem Set vorhanden");
+				return null;
+			}
+			iteratorContainerSet = iteratorContainerSet.getNext();
+		}
 		Container<ELEM> container = new Container<ELEM>(this.lastContainer, this.lastContainer.getPrev(), elem, new KEY());
 		this.lastContainer.getPrev().setNext(container);
 		this.lastContainer.setPrev(container);
 		this.size ++;
 		int counter = 0;
-		while (this.firstContainer.getNext() != this.lastContainer) {
+		iteratorContainerSet = this.firstContainer.getNext();
+		while (iteratorContainerSet != this.lastContainer) {
 			counter ++;
+			iteratorContainerSet = iteratorContainerSet.getNext();
 		}
 		POS pos = new POS();
 		pos.setInteger(counter);
@@ -76,9 +87,10 @@ public class ContainerSet<ELEM> implements SET<ELEM> {
 	@Override
 	public void showAll() {
 		// TODO Auto-generated method stub
-		Container<ELEM> container = this.firstContainer;
-		while (container.getNext() != this.lastContainer) {
+		Container<ELEM> container = this.firstContainer.getNext();
+		while (container != this.lastContainer) {
 			System.out.println(container.getElem().toString());
+			container = container.getNext();
 		}
 	}
 
