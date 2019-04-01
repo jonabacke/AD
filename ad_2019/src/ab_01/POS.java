@@ -9,6 +9,10 @@ public class POS {
 		this.setInteger(-1);
 	}
 	
+	public POS(int i) {
+		this.setInteger(i);
+	}
+	
 	public void setInteger(int pos) {
 		this.positionInteger = pos;
 	}
