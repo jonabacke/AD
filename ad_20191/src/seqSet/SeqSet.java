@@ -25,15 +25,10 @@ public class SeqSet implements SET {
 	private int maxsize = 10;
 	private ELEM[] elem;
 	private int listSize;
-	public long counter;
 	
 	public SeqSet() {
 		elem = new ELEM[maxsize + 1];
 		listSize = 0;
-	}
-	
-	public long getCounter() {
-		return counter;
 	}
 	
 	@Override
@@ -55,7 +50,6 @@ public class SeqSet implements SET {
 	
 	@Override
 	public void delete(POS pos) {
-		counter++;
 		if (!(pos instanceof SeqPos) && !((SeqPos)pos).getValid()) {
 			return;
 		}
@@ -79,7 +73,6 @@ public class SeqSet implements SET {
 		
 		int i = listSize;
 		while (!elem[i].equals(elem[0])) {
-			counter++;
 			i--;
 		}
 		

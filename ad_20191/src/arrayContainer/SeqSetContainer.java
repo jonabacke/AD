@@ -22,7 +22,6 @@ public class SeqSetContainer implements SET{
 	private int posFreiListe;
 	private int maxsize;
 	private int listSize;
-	public long counter;
 	
 	public SeqSetContainer() {
 		maxsize = 10 + 1; //1 Stopperelement auf 0
@@ -32,10 +31,6 @@ public class SeqSetContainer implements SET{
 		elemContainer[11] = new SetContainer(0, 0, null);
 		freiListe = new int[maxsize+1];
 		posFreiListe = 0;
-	}
-	
-	public long getCounter() {
-		return counter;
 	}
 
 	@Override
@@ -65,7 +60,6 @@ public class SeqSetContainer implements SET{
 		else {
 			maxsize = maxsize * 2;
 			elemContainer = Arrays.copyOf(elemContainer, maxsize);
-			freiListe = Arrays.copyOf(freiListe, maxsize);
 			elemContainer[listSize] = new SetContainer(listSize + 1, listSize - 1, newElem);
 			neuePos.setZeiger(listSize);
 		}
@@ -74,7 +68,6 @@ public class SeqSetContainer implements SET{
 
 	@Override
 	public void delete(POS pos) {
-		counter++;
 		if ((pos instanceof SetPosContainer) && !((SetPosContainer)pos).getValid()) {
 			return;
 		}
@@ -111,7 +104,6 @@ public class SeqSetContainer implements SET{
 		int index = maxsize-1;
 		boolean found = false;		
 		while (!found) {
-			counter++;
 			if (elemContainer[index] != null) {
 				found = elemContainer[index].getElem().equals(elemContainer[0].getElem());
 				if (!found) {

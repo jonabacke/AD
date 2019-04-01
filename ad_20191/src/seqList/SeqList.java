@@ -18,19 +18,14 @@ import adp01.SET;
  *
  */
 public class SeqList implements SET {
-	public Knoten<ELEM> head;
-	public Knoten<ELEM> tail;
+	private Knoten<ELEM> head;
+	private Knoten<ELEM> tail;
 	private int listSize;
-	public long counter;
 	
 	public SeqList() {
 		tail = new Knoten<ELEM>(null, null);
 		head = new Knoten<ELEM>(tail, null);
 		tail.setNext(head);
-	}
-	
-	public long getCounter() {
-		return counter;
 	}
 
 	@Override
@@ -49,16 +44,10 @@ public class SeqList implements SET {
 
 	@Override
 	public void delete(POS pos) {
-		counter++;
-		Knoten<ELEM> prevKnoten = ((ListPos)pos).getZeiger();
-		Knoten<ELEM> nextKnoten = tail;
-		
-		if (prevKnoten.getNext() != null) {
-			nextKnoten = prevKnoten.getNext().getNext();
-		}
-		
-		listSize--;
-		prevKnoten.setNext(nextKnoten);
+		 Knoten<ELEM> prevKnoten = ((ListPos)pos).getZeiger();
+		 Knoten<ELEM> nextKnoten = ((ListPos)pos).getZeiger().getNext().getNext();
+		 
+		 prevKnoten.setNext(nextKnoten);
 	}
 
 	@Override
@@ -76,7 +65,6 @@ public class SeqList implements SET {
 		
 		while(!(suchPos.getNext().equals(tail))) {
 			suchPos = suchPos.getNext();
-			counter++;
 		}
 		
 		tail.setElem(null);

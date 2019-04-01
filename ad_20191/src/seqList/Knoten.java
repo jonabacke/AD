@@ -50,11 +50,4 @@ public class Knoten<T> {
 	public T getElem() {
 		return elem;
 	}
-	
-	public boolean equals(Object o) {
-		if (o instanceof Knoten) {
-			return ((Knoten)o).getElem().equals(this.getElem());
-		}
-		return false;
-	}
 }
