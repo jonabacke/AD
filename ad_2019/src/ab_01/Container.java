@@ -7,7 +7,7 @@ public class Container<ELEM> {
 	private ELEM element;
 	private KEY key;
 	
-	public Container(Container<ELEM> next, Container<ELEM> prev, ELEM element, KEY key) {
+	public Container(Container<ELEM> prev, Container<ELEM> next, ELEM element, KEY key) {
 		// TODO Auto-generated constructor stub
 		this.next = next;
 		this.prev = prev;

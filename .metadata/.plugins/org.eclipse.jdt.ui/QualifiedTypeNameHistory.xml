@@ -8,11 +8,9 @@
     <fullyQualifiedTypeName name="java.lang.OutOfMemoryError"/>
     <fullyQualifiedTypeName name="org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.Add"/>
     <fullyQualifiedTypeName name="sun.java2d.Disposer.PollDisposable"/>
-    <fullyQualifiedTypeName name="ab_01.Container"/>
     <fullyQualifiedTypeName name="ab_01.ELEM"/>
     <fullyQualifiedTypeName name="ab_01.Queue"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="ab_01.ContainerSet"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="ELEM"/>
     <fullyQualifiedTypeName name="ab_01.Position"/>
@@ -22,4 +20,7 @@
     <fullyQualifiedTypeName name="ab_01.arrayListElement"/>
     <fullyQualifiedTypeName name="java.lang.Class"/>
     <fullyQualifiedTypeName name="ab_01.arraySet"/>
+    <fullyQualifiedTypeName name="ab_01.ContainerSet"/>
+    <fullyQualifiedTypeName name="ab_01.Container"/>
+    <fullyQualifiedTypeName name="ab_05.MergeInsertion"/>
 </qualifiedTypeNameHistroy>

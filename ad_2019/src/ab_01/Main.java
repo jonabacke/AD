@@ -6,60 +6,36 @@ public class Main {
 		// TODO Auto-generated method stub
 		SET<String> arrayListSet = new ArrayListSet<String>();
 		SET<String> containerSet = new ContainerSet<String>();
-		SET<String> arraySet = new arraySet<String>(String.class);
-		
-		POS pos = new POS();
-
-		arrayListSet.add("1.Element");
-		arrayListSet.add("2.Element");
-		arrayListSet.add("3.Element");
-		arrayListSet.add("4.Element");
-		arrayListSet.add("5.Element");
-		arrayListSet.add("6.Element");
-		arrayListSet.add("7.Element");
-		arrayListSet.showAll();
-		pos.setInteger(4);
-		arrayListSet.delete(pos);
-		arrayListSet.showAll();
-		arrayListSet.add("8.Element");
-		arrayListSet.add("7.Element");
-		arrayListSet.showAll();
-		
-		System.out.println();
-
-		containerSet.add("1.Element");
-		containerSet.add("2.Element");
-		containerSet.add("3.Element");
-		containerSet.add("4.Element");
-		containerSet.add("5.Element");
-		containerSet.add("6.Element");
-		containerSet.add("7.Element");
-		containerSet.showAll();
-		pos.setInteger(4);
-		containerSet.delete(pos);
-		containerSet.showAll();
-		containerSet.add("8.Element");
-		containerSet.add("7.Element");
-		containerSet.showAll();
-		
-		System.out.println();
-
-		arraySet.add("1.Element");
-		arraySet.add("2.Element");
-		arraySet.add("3.Element");
-		arraySet.add("4.Element");
-		arraySet.add("5.Element");
-		arraySet.add("6.Element");
-		arraySet.add("7.Element");
-		arraySet.showAll();
-		pos.setInteger(4);
-		arraySet.delete(pos);
-		arraySet.showAll();
-		arraySet.add("8.Element");
-		arraySet.add("7.Element");
-		arraySet.showAll();
+		SET<String> arraySet = new ArraySet<String>();
+		testeContainerSet(10);
+		testeContainerSet(100);
+		testeContainerSet(1000);
+		testeContainerSet(10000);
+		testeContainerSet(100000);
 
 		
+	}
+	
+	public static void testeContainerSet(int k) {
+		ContainerSet<Integer> containerSet = new ContainerSet<Integer>();
+		KEY [] posArrayKey = new KEY [k];
+		for (int i = 0; i < k; i++) {
+			containerSet.add(i);
+			posArrayKey[i] = containerSet.lastContainer.getPrev().getKey();
+		}
+		for (int i = k - 1; i >= 0; i--) {
+			containerSet.delete(posArrayKey[i]);
+		}
+		System.out.println(containerSet.count);
+		containerSet.count = 0;
+		POS [] posArr = new POS [k];
+		for (int i = 0; i < k; i++) {
+			posArr[i] = containerSet.add(i);
+		}
+		for (int i = k - 1; i >= 0; i--) {
+			containerSet.delete(posArr[i]);
+		}
+		System.err.println(containerSet.count);
 	}
 
 }

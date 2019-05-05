@@ -34,23 +34,22 @@ class ContainerTest {
 		}
 		
 		String testElem = new String("");
-		for(int i = 1; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			testElem = testListe.retrieve(new POS(i));
-			assertEquals(testElem, testElems[i-1]);
+			assertEquals(testElem, testElems[i]);
 		}
 	}
 	
 	@Test
 	void addUniqueTest() {
 		ContainerSet<String> testListe = new ContainerSet<String>();
-		Container<String> testCon = new Container<String>(null, null, "Test", new KEY());
 		
-		testListe.add(testCon.getElem());
+		testListe.add("Test");
 		assertEquals(1, testListe.size());
-		testListe.add(testCon.getElem());
+		testListe.add("Test");
 		assertEquals(1, testListe.size());
 		
-		testListe.delete(testCon.getKey());
+		testListe.delete(testListe.firstContainer.getNext().getKey());
 		assertEquals(0, testListe.size());
 	}
 	
@@ -73,35 +72,51 @@ class ContainerTest {
 		
 		for(int i = 0; i < 1000; i++) {
 			testCon = new Container<String>(null, null, "Test" + i, new KEY());
-			testListe.add(testCon.getElem());
+			testListe.add("Test" + i);
 			assertEquals(testCon.getElem(), testListe.retrieve(new POS(i)));
 		}
 		assertEquals(1000, testListe.size());
 	}
 	
 	@Test
-	void deleteAll() {
+	void deletePos() {
 		ContainerSet<String> testListe = new ContainerSet<String>();
+		POS [] posArrayPos = new POS [10];
 		
-		for(int i = 0; i < 1000; i++) {
-			testListe.add("Test" + i);
+		for(int i = 0; i < 10; i++) {
+			posArrayPos[i] = testListe.add("Test " + i);
 		}
-		assertEquals(1000, testListe.size());
+		assertEquals(10, testListe.size());
 		
-		for(int i = 0; i < 1000; i++) {
-			testListe.delete(new POS(i));
+		for(int i = 9; i >= 0; i--) {
+			testListe.delete(posArrayPos[i]);
 		}
+		assertEquals(0, testListe.size());
+	}
+	
+	@Test
+	void deleteKey() {
+		ContainerSet<String> testListe = new ContainerSet<String>();
+		KEY [] posArrayKey = new KEY [10];
 		
+		for(int i = 0; i < 10; i++) {
+			testListe.add("Test " + i);
+			posArrayKey[i] = testListe.lastContainer.getPrev().getKey();
+		}
+		assertEquals(10, testListe.size());
+		
+		for(int i = 9; i >= 0; i--) {
+			testListe.delete(posArrayKey[i]);
+		}
 		assertEquals(0, testListe.size());
 	}
 	
 	@Test
 	void findTest() {
 		ContainerSet<String> testListe = new ContainerSet<String>();
-		Container testCon = new Container<String>(null, null, "Test", new KEY());
 		
 		testListe.add("Test");
-		assertEquals(new POS(1), testListe.find(testCon.getKey()));
+		assertEquals(new POS(0).getInteger(), testListe.find(testListe.firstContainer.getNext().getKey()).getInteger());
 	}
 	
 	@Test
@@ -110,6 +125,6 @@ class ContainerTest {
 		String testElem = new String("Test");
 		testListe.add(testElem);
 		
-		assertEquals("Test", testListe.retrieve(new POS(1)));
+		assertEquals("Test", testListe.retrieve(new POS(0)));
 	}
 }
