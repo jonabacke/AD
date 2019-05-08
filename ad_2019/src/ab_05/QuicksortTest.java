@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class QuicksortTest {
 
     private int[] numbers;
-    private final static int SIZE = 100;
+    private final static int SIZE = 10;
     private final static int MAX = 1000;
 
     @BeforeEach
@@ -109,9 +109,9 @@ public class QuicksortTest {
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println("InsertSort " + elapsedTime);
-        printResult(sorter.numbers);
+        printResult(sorter.nummern);
 
-        if (!validate(sorter.numbers)) {
+        if (!validate(sorter.nummern)) {
             fail("Should not happen");
         }
         assertTrue(true);

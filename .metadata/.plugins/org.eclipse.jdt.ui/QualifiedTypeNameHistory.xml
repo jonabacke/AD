@@ -11,7 +11,6 @@
     <fullyQualifiedTypeName name="ab_01.ELEM"/>
     <fullyQualifiedTypeName name="ab_01.Queue"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="ELEM"/>
     <fullyQualifiedTypeName name="ab_01.Position"/>
     <fullyQualifiedTypeName name="ab_01.Element"/>
@@ -23,4 +22,5 @@
     <fullyQualifiedTypeName name="ab_01.ContainerSet"/>
     <fullyQualifiedTypeName name="ab_01.Container"/>
     <fullyQualifiedTypeName name="ab_05.MergeInsertion"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>
