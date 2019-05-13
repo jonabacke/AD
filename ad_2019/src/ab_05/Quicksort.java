@@ -8,20 +8,41 @@ public class Quicksort  {
     private int counterZufaellig;
     
 
-    public void sort(int[] values) {
+    public void sortRechts(int[] values) {
         if (values ==null || values.length==0){
             return;
         }
         this.numbers = values;
         number = values.length;
         quicksortRechts(0, number - 1);
+  //      System.out.println("CounterRechts: " + counterRechts);
+    }
+    public int getCounterMedian() {
+		return counterMedian;
+	}
+    public int getCounterZufaellig() {
+		return counterZufaellig;
+	}
+    public int getCounterRechts() {
+		return counterRechts;
+	}
+    public void sortMedian(int[] values) {
+        if (values ==null || values.length==0){
+            return;
+        }
+        number = values.length;
         this.numbers = values;
         quicksortMedian(0, number - 1);
+   //     System.out.println("CounterMedian: " + counterMedian);
+    }
+    public void sortZufall(int[] values) {
+        if (values ==null || values.length==0){
+            return;
+        }
+        number = values.length;
         this.numbers = values;
         quicksortZufaellig(0, number - 1);
-        System.out.println("CounterRechts: " + counterRechts);
-        System.out.println("CounterMedian: " + counterMedian);
-        System.out.println("CounterZufaellig: " + counterZufaellig);
+  //      System.out.println("CounterZufaellig: " + counterZufaellig);
     }
 
     private void quicksortRechts(int low, int high) {

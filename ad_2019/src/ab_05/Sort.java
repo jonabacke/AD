@@ -13,9 +13,11 @@ public class Sort {
         this.numbers = values;
         number = values.length;
         insertSort();
-        System.out.println("CounterInserSort: " + counterInsertSort);
+ //       System.out.println("CounterInserSort: " + counterInsertSort);
     }
-	
+	public int getCounterInsertSort() {
+		return counterInsertSort;
+	}
 	public void switches(int i, int j) {
 		int temp = numbers[i];
 		numbers[i] = numbers[j];

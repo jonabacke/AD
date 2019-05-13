@@ -13,13 +13,12 @@ public class MergeInsertion {
         }
         int [] numbers = values;
 
-        numbers = mergeInsertionSort2(numbers, values.length);
-        numbers = mergeInsertionSort(numbers);
-        this.nummern = values;
-        System.out.println("CounterMergeInserSort: " + counterMergeInsertionSort);
-        System.out.println("CounterMergeInserSort: " + counterMergeInsertionSort2);
+        nummern = mergeInsertionSort(numbers);
+   //     System.out.println("CounterMergeInserSort: " + counterMergeInsertionSort);
     }
-    
+    public int getCounterMergeInsertionSort() {
+		return counterMergeInsertionSort;
+	}
     private int[] mergeInsertionSort(int [] array) {
     	if (array.length < 2) {
     		return array;
