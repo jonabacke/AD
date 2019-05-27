@@ -23,4 +23,6 @@
     <fullyQualifiedTypeName name="ab_01.Container"/>
     <fullyQualifiedTypeName name="ab_05.MergeInsertion"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="ab_05.HeapSort"/>
 </qualifiedTypeNameHistroy>
