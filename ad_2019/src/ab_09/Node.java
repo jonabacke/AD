@@ -9,6 +9,7 @@ public class Node {
 	private HashMap<Integer, Node> _nachfolger;
 	private boolean gesetzt = false;
 	private int randWert = 0;
+	private Node vorgängerNode;
 	
 	
 	public Node(int value) {
@@ -16,6 +17,31 @@ public class Node {
 		this._distance = new HashMap<Integer, Integer>();
 		this._nachfolger = new HashMap<Integer, Node>();
 		this._value = value;
+	}
+	
+	public void set_nachfolger(HashMap<Integer, Node> _nachfolger) {
+		this._nachfolger = _nachfolger;
+	}
+	public void setGesetzt(boolean gesetzt) {
+		this.gesetzt = gesetzt;
+	}
+	public void setRandWert(int randWert) {
+		this.randWert = randWert;
+	}
+	public HashMap<Integer, Node> get_nachfolger() {
+		return _nachfolger;
+	}
+	public int getRandWert() {
+		return randWert;
+	}
+	public Node getVorgängerNode() {
+		return vorgängerNode;
+	}
+	public void setVorgängerNode(Node vorgängerNode) {
+		this.vorgängerNode = vorgängerNode;
+	}
+	public boolean getGesetzt() {
+		return this.gesetzt;
 	}
 	
 	

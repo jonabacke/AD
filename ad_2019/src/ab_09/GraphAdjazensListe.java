@@ -44,13 +44,14 @@ public class GraphAdjazensListe implements GraphInterface {
 		// TODO Auto-generated method stub
 		Node node = new Node(value);
 		this.liste.put(value, node);
-		if (head == null) {
-			head = node;
-		}
 	}
 	
 	private Node getNodeOfValue(int value) {
 		return  liste.get(value);
+	}
+	
+	public Node getHead() {
+		return head;
 	}
 
 	@Override
@@ -63,6 +64,9 @@ public class GraphAdjazensListe implements GraphInterface {
 	public void addWeight(int node1, int node2, int weight) {
 		// TODO Auto-generated method stub
 		this.liste.get(node1).set_distance(weight, node2);
+		if (head == null) {
+			head = liste.get(node1);
+		}
 	}
 
 }

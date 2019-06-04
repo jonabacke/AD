@@ -32,19 +32,12 @@ public class Main {
 			}
 			
 		}
+		
+
+		AlgorithmusVonDykstraMatrix dykstraMatrix = new AlgorithmusVonDykstraMatrix(matrix, matrix.getHeadNode());
+		
 		System.out.println("---------------");
 		matrix.printGraph();
-		
-		GraphAdjazensListe liste = new GraphAdjazensListe();
-		set.forEach(ele -> liste.addNode(ele));
-		
-		
-		for (int i = 0; i < 20; i++) {
-			liste.addWeight((int) array[rnd.nextInt(10)], (int) array[rnd.nextInt(10)], rnd.nextInt(100));
-		}
-		System.out.println("---------------");
-		
-		AlgorithmusVonDykstraMatrix dykstraMatrix = new AlgorithmusVonDykstraMatrix(matrix, matrix.getHeadNode());
 		
 		Container[][] newMatrix = dykstraMatrix.makeWays(matrix.getHeadNode(), 0);
 
@@ -58,6 +51,25 @@ public class Main {
 			}
 			System.out.println();
 		}
+		
+		
+		
+		
+		
+		
+		GraphAdjazensListe liste = new GraphAdjazensListe();
+		set.forEach(ele -> liste.addNode(ele));
+		
+		
+		for (int i = 0; i < 20; i++) {
+			liste.addWeight((int) array[rnd.nextInt(10)], (int) array[rnd.nextInt(10)], rnd.nextInt(100));
+		}
+		System.out.println("---------------");
+		
+		AlgorithmusVonDykstraListe dykListe = new AlgorithmusVonDykstraListe(liste, liste.getHead());
+		GraphAdjazensListe newListe = new GraphAdjazensListe();
+		newListe = dykListe.makeWays(liste.getHead(), 0);
+
 		
 
 	}
