@@ -1,44 +1,63 @@
 package ab_09;
 
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Random;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		GraphAdjazensMatrix matrix = new GraphAdjazensMatrix(5);
-		matrix.addNode(1);
-		matrix.addNode(2);
-		matrix.addNode(3);
-		matrix.addNode(4);
-		matrix.addNode(5);
-		matrix.addWeight(1, 3, 12);
-		matrix.addWeight(1, 4, 60);
-		matrix.addWeight(2, 1, 10);
-		matrix.addWeight(3, 2, 20);
-		matrix.addWeight(3, 4, 32);
-		matrix.addWeight(5, 1, 7);
+		HashSet<Integer> set = new HashSet<Integer>();
+		Random rnd = new Random();
+		do {
+			set.add(rnd.nextInt(100));
+		} while (set.size() < 10);
+		Object[] array = new Object[4];
+		array = set.toArray();
+		
+		
+		
+		GraphAdjazensMatrix matrix = new GraphAdjazensMatrix(10);
+		set.forEach(ele -> matrix.addNode(ele));
+		
+		
+		for (int i = 0; i < 20; ) {
+			int k = rnd.nextInt(10);
+			int j = rnd.nextInt(10);
+			if (k != j) {
+				matrix.addWeight((int) array[k], (int) array[j], rnd.nextInt(100));
+				i++;
+			} else {
+				
+			}
+			
+		}
 		System.out.println("---------------");
 		matrix.printGraph();
 		
-		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-		map.put(2, 4);
-		
 		GraphAdjazensListe liste = new GraphAdjazensListe();
-		liste.addNode(1);
-		liste.addNode(2);
-		liste.addNode(3);
-		liste.addNode(4);
-		liste.addNode(5);
-		liste.addWeight(1, 3, 12);
-		liste.addWeight(1, 4, 60);
-		liste.addWeight(2, 1, 10);
-		liste.addWeight(3, 2, 20);
-		liste.addWeight(3, 4, 32);
-		liste.addWeight(5, 1, 7);
+		set.forEach(ele -> liste.addNode(ele));
+		
+		
+		for (int i = 0; i < 20; i++) {
+			liste.addWeight((int) array[rnd.nextInt(10)], (int) array[rnd.nextInt(10)], rnd.nextInt(100));
+		}
 		System.out.println("---------------");
 		
-		liste.printGraph();
+		AlgorithmusVonDykstraMatrix dykstraMatrix = new AlgorithmusVonDykstraMatrix(matrix, matrix.getHeadNode());
+		
+		Container[][] newMatrix = dykstraMatrix.makeWays(matrix.getHeadNode(), 0);
+
+		for (int i = 0; i < newMatrix.length; i++) {
+			for (int j = 0; j < newMatrix[i].length; j++) {
+				if (newMatrix[i][j] == null) {
+					System.out.print(0 + ", ");
+				} else {
+					System.out.print(newMatrix[i][j].getRandemenge() + ", ");					
+				}
+			}
+			System.out.println();
+		}
 		
 
 	}

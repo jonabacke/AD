@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class GraphAdjazensListe implements GraphInterface {
 
 	private Node head;
- 	private HashMap<Integer, Node> liste;
+ 	HashMap<Integer, Node> liste;
  	
  	public GraphAdjazensListe() {
 		// TODO Auto-generated constructor stub
@@ -44,6 +44,9 @@ public class GraphAdjazensListe implements GraphInterface {
 		// TODO Auto-generated method stub
 		Node node = new Node(value);
 		this.liste.put(value, node);
+		if (head == null) {
+			head = node;
+		}
 	}
 	
 	private Node getNodeOfValue(int value) {

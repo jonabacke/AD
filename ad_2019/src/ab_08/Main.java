@@ -65,6 +65,7 @@ public class Main {
 				baumListe.getPosition(baumListe.head, value_one).getValue();
 		System.out.println(sumValue);
 		}
+		
 	}
 	
 	public static void bearbeiteBaum(KnotenInterface<Integer> node) {

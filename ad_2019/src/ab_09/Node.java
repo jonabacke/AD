@@ -7,6 +7,9 @@ public class Node {
 	private int _value;
 	private HashMap<Integer, Integer> _distance;
 	private HashMap<Integer, Node> _nachfolger;
+	private boolean gesetzt = false;
+	private int randWert = 0;
+	
 	
 	public Node(int value) {
 		// TODO Auto-generated constructor stub
@@ -18,6 +21,10 @@ public class Node {
 	
 	public int get_distanc(int nachfolger) {
 		return this._distance.get(nachfolger);
+	}
+	
+	public HashMap<Integer, Integer> get_distance() {
+		return _distance;
 	}
 	
 	public HashMap<Integer, Node> get_neighbours() {
