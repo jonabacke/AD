@@ -43,27 +43,41 @@ public class Main {
 		System.out.println(ergebnis);
 		
 		BaumListe<Integer> baumListe = new BaumListe<Integer>();
-		baumListe.insert(new KnotenListe<Integer>(null, null, null, 8));
-		baumListe.insert(new KnotenListe<Integer>(null, null, null, 10));
-		baumListe.insert(new KnotenListe<Integer>(null, null, null, 11));
-		baumListe.insert(new KnotenListe<Integer>(null, null, null, 9));
-		baumListe.insert(new KnotenListe<Integer>(null, null, null, 5));
-		baumListe.insert(new KnotenListe<Integer>(null, null, null, 4));
-		baumListe.insert(new KnotenListe<Integer>(null, null, null, 7));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 50));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 75));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 25));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 13));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 38));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 63));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 83));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 6));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 18));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 28));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 42));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 58));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 68));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 82));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 95));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 0));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 100));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 90));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 80));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 40));
+		baumListe.insert(new KnotenListe<Integer>(null, null, null, 70));
 		bearbeiteBaum(baumListe.getHead());
 		insertOrder(baumListe.getHead());
 		while (true) {
-		System.out.println("GEben sie 2 zahlen ein");
+		System.out.println("Geben sie 2 zahlen ein");
 		int value_one = 7;
 		int value_two = 10;
 		Scanner scan = new Scanner(System.in);
 		value_one = scan.nextInt();
 		value_two = scan.nextInt();
-		
+		baumListe.counter = 0;
 		int sumValue = baumListe.getPosition(baumListe.head, value_two).getSumValue() - 
 				baumListe.getPosition(baumListe.head, value_one).getSumValue() + 
 				baumListe.getPosition(baumListe.head, value_one).getValue();
-		System.out.println(sumValue);
+		System.out.println("Summe = " + sumValue + " Counter = " + baumListe.counter);
 		}
 		
 	}
@@ -81,12 +95,25 @@ public class Main {
 		}
 	}
 	
+	public static int searchInsertOrder(KnotenInterface<Integer> node, int value) {
+		if (node.getValue() > value && node.getLeftSon() != null) {
+			return searchInsertOrder(node.getLeftSon(), value);
+		} else if (node.getValue() < value && node.getRightSon() != null) {
+			return searchInsertOrder(node.getRightSon(), value);
+		} else {
+			return node.getValue();
+		}
+	}
+	
 	public static void insertOrder(KnotenInterface<Integer> node) {
 		if (node.getLeftSon() != null)
 			{
 				insertOrder(node.getLeftSon());
 			}
-		System.out.println(node.getValue() + ", " + ((KnotenListe<Integer>) node).getSumValue());
+		System.out.println(
+				"Knotenwert : " + node.getValue() 
+				+ ", " + 
+				"Zusatzinformation: " +((KnotenListe<Integer>) node).getSumValue());
 		if (node.getRightSon() != null) 
 			{
 				insertOrder(node.getRightSon());

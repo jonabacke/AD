@@ -1,6 +1,5 @@
 package ab_09_1;
 
-import java.sql.Time;
 import java.util.Random;
 
 public class DijkstraAdjacencyMatrix {
@@ -15,7 +14,7 @@ public class DijkstraAdjacencyMatrix {
 
         public void addEdge(int source, int destination, int weight) {
             //add edge
-            matrix[source][destination]=weight;
+            matrix[source][destination] = weight;
 
             //add back edge for undirected graph
             matrix[destination][source] = weight;
@@ -80,7 +79,7 @@ public class DijkstraAdjacencyMatrix {
                 }
             }
             //print shortest path tree
-            printDijkstra(sourceVertex, distance);
+            //printDijkstra(sourceVertex, distance);
         }
 
         public void printDijkstra(int sourceVertex, int [] key){
@@ -93,22 +92,33 @@ public class DijkstraAdjacencyMatrix {
     }
 
     public static void main(String[] args) {
-        int k = 100000;
-        Graph graph = new Graph(k);
+        int k = 10;
+        int edge = 100;
+        long time = 0;
         int sourceVertex = 0;
         Random rnd = new Random();
-		for (int i = 0; i < k * 2; ) {
-			int m = rnd.nextInt(k);
-			int n = rnd.nextInt(k);
-			int o = rnd.nextInt(k);
-			if (m != n) {
-				graph.addEdge(n, m, o);
-				i++;
-			}
+        for (int j = 0; j < 1000; j++) {
+            Graph graph = new Graph(k);
+        	for (int i = 0; i < edge; ) {
+    			//source
+    			int n = rnd.nextInt(k);
+    			//destination
+    			int m = rnd.nextInt(k);
+    			//weight
+    			int o = rnd.nextInt(10);
+    			if (m != n) {
+    				graph.addEdge(n, m, o);
+    				i++;
+    			}
+    		}
+    		long anfang = System.nanoTime();
+            graph.dijkstra_GetMinDistances(sourceVertex);
+            long ende = System.nanoTime();
+            time = time + (ende - anfang) / 1000;
+			System.out.println(j);
+			System.out.println(ende - anfang);
 		}
-		long anfang = System.currentTimeMillis();
-        graph.dijkstra_GetMinDistances(sourceVertex);
-        long ende = System.currentTimeMillis();
-        System.out.println("Zeit in millisekunden: " + (ende - anfang));
+		
+        System.out.println("Zeit in nanosekunden: " + (time));
 }
 }
